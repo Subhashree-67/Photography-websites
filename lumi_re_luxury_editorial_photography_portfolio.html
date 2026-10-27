@@ -1,0 +1,1881 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUMIÈRE — Luxury Fine Art & Editorial Photography Studio</title>
+    <meta name="description" content="Fine art editorial photography studio specializing in intimate weddings, portraits, and quiet moments worldwide.">
+    
+    <!-- Google Fonts Preconnect & Load -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Tailored CSS Design System -->
+    <style>
+        /* ==========================================================================
+           DESIGN TOKENS & VARIABLES
+           ========================================================================== */
+        :root {
+            --bg-ivory: #F7F5F0;
+            --bg-paper: #FFFEFC;
+            --text-charcoal: #22211F;
+            --text-taupe: #7A746E;
+            --border-soft: #DEDAD2;
+            --border-subtle: #ECE8E1;
+            --accent-accent: #A39688;
+            --accent-hover: #11100F;
+            
+            --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            
+            --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition-fast: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            --header-height: 80px;
+        }
+
+        /* Reset & Base Setup */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 16px;
+            background-color: var(--bg-ivory);
+            color: var(--text-charcoal);
+            font-family: var(--font-sans);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            overflow-x: hidden;
+        }
+
+        body {
+            overflow-x: hidden;
+            width: 100%;
+            line-height: 1.6;
+            background-color: var(--bg-ivory);
+        }
+
+        /* Typography Defaults */
+        h1, h2, h3, h4, h5, .font-serif {
+            font-family: var(--font-serif);
+            font-weight: 300;
+            line-height: 1.15;
+            letter-spacing: -0.01em;
+        }
+
+        p {
+            color: var(--text-taupe);
+            font-weight: 300;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: var(--transition-fast);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            background-color: var(--border-soft);
+        }
+
+        button {
+            font-family: inherit;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: inherit;
+        }
+
+        /* Focus Style for Accessibility */
+        :focus-visible {
+            outline: 1.5px solid var(--text-charcoal);
+            outline-offset: 4px;
+        }
+
+        /* Utility Container */
+        .container {
+            width: 100%;
+            max-width: 1380px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: clamp(1.25rem, 4vw, 4rem);
+            padding-right: clamp(1.25rem, 4vw, 4rem);
+        }
+
+        /* ==========================================================================
+           1. ANNOUNCEMENT BAR
+           ========================================================================== */
+        .announcement-bar {
+            background-color: var(--text-charcoal);
+            color: var(--bg-ivory);
+            font-size: 0.6875rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            padding: 0.65rem 1rem;
+            text-align: center;
+            font-weight: 400;
+            position: relative;
+            z-index: 60;
+        }
+
+        /* ==========================================================================
+           2. HEADER & NAVIGATION
+           ========================================================================== */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background-color: rgba(247, 245, 240, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(222, 218, 210, 0.5);
+            transition: var(--transition-fast);
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .brand-logo {
+            font-family: var(--font-serif);
+            font-size: clamp(1.5rem, 2.5vw, 2rem);
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            font-weight: 400;
+            color: var(--text-charcoal);
+            display: inline-block;
+        }
+
+        .desktop-nav {
+            display: none;
+            align-items: center;
+            gap: 2.75rem;
+        }
+
+        @media (min-width: 768px) {
+            .desktop-nav { display: flex; }
+            .mobile-toggle { display: none !important; }
+        }
+
+        .nav-link {
+            font-size: 0.75rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--text-charcoal);
+            position: relative;
+            padding-bottom: 4px;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 1px;
+            background-color: var(--text-charcoal);
+            transition: var(--transition-fast);
+        }
+
+        .nav-link:hover::after { width: 100%; }
+
+        .btn-editorial-sm {
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 0.65rem 1.35rem;
+            border: 1px solid var(--text-charcoal);
+            background: transparent;
+            color: var(--text-charcoal);
+            transition: var(--transition-fast);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 40px;
+        }
+
+        .btn-editorial-sm:hover {
+            background-color: var(--text-charcoal);
+            color: var(--bg-paper);
+        }
+
+        /* Mobile Menu Drawer */
+        .mobile-toggle {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 32px;
+            height: 32px;
+            z-index: 70;
+            background: transparent;
+            border: none;
+        }
+
+        .mobile-toggle span {
+            display: block;
+            height: 1px;
+            width: 100%;
+            background-color: var(--text-charcoal);
+            transition: var(--transition-fast);
+            transform-origin: center;
+        }
+
+        .mobile-toggle.is-active span:nth-child(1) { transform: translateY(3px) rotate(45deg); }
+        .mobile-toggle.is-active span:nth-child(2) { opacity: 0; }
+        .mobile-toggle.is-active span:nth-child(3) { transform: translateY(-3px) rotate(-45deg); }
+
+        .mobile-drawer {
+            position: fixed;
+            inset: 0;
+            background-color: var(--bg-paper);
+            z-index: 65;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition-smooth);
+            transform: translateY(-10px);
+        }
+
+        .mobile-drawer.is-open {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .mobile-nav-links a {
+            font-family: var(--font-serif);
+            font-size: 2.25rem;
+            font-weight: 300;
+            color: var(--text-charcoal);
+            transition: var(--transition-fast);
+        }
+
+        /* ==========================================================================
+           3. HERO SECTION
+           ========================================================================== */
+        .hero-section {
+            padding-top: clamp(2rem, 5vw, 4rem);
+            padding-bottom: clamp(3rem, 7vw, 6rem);
+            position: relative;
+        }
+
+        .hero-header {
+            max-width: 900px;
+            margin-bottom: clamp(2rem, 4vw, 3.5rem);
+        }
+
+        .eyebrow {
+            font-size: 0.6875rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--accent-accent);
+            margin-bottom: 1.25rem;
+            display: block;
+            font-weight: 500;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6.5vw, 5.25rem);
+            line-height: 1.05;
+            margin-bottom: 1.5rem;
+            color: var(--text-charcoal);
+            font-weight: 300;
+        }
+
+        .hero-description {
+            font-size: clamp(1rem, 1.3vw, 1.25rem);
+            line-height: 1.6;
+            max-width: 580px;
+            color: var(--text-taupe);
+            margin-bottom: 2rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .btn-editorial-primary {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 1.15rem 2.25rem;
+            background-color: var(--text-charcoal);
+            color: var(--bg-paper);
+            border: 1px solid var(--text-charcoal);
+            transition: var(--transition-fast);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+        }
+
+        .btn-editorial-primary:hover {
+            background-color: transparent;
+            color: var(--text-charcoal);
+        }
+
+        .link-subtle {
+            font-size: 0.75rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--text-charcoal);
+            border-bottom: 1px solid var(--border-soft);
+            padding-bottom: 4px;
+        }
+
+        .link-subtle:hover {
+            border-color: var(--text-charcoal);
+        }
+
+        .hero-media-container {
+            position: relative;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: clamp(380px, 65vh, 720px);
+            overflow: hidden;
+            border-radius: 2px;
+        }
+
+        .hero-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 30%;
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .hero-image-wrapper:hover img {
+            transform: scale(1.02);
+        }
+
+        .hero-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--border-soft);
+            margin-top: 1.25rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-taupe);
+        }
+
+        /* ==========================================================================
+           4. PORTFOLIO / SELECTED WORK
+           ========================================================================== */
+        .portfolio-section {
+            padding-top: clamp(4rem, 8vw, 8rem);
+            padding-bottom: clamp(4rem, 8vw, 8rem);
+            border-top: 1px solid var(--border-soft);
+        }
+
+        .section-header-flex {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
+        }
+
+        @media (min-width: 768px) {
+            .section-header-flex {
+                flex-direction: row;
+                align-items: flex-end;
+                justify-content: space-between;
+            }
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3.25rem);
+            color: var(--text-charcoal);
+        }
+
+        .filter-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.25rem 2rem;
+            align-items: center;
+        }
+
+        .filter-btn {
+            font-size: 0.75rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--text-taupe);
+            padding-bottom: 2px;
+            position: relative;
+            transition: var(--transition-fast);
+        }
+
+        .filter-btn::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0%;
+            height: 1px;
+            background-color: var(--text-charcoal);
+            transition: var(--transition-fast);
+        }
+
+        .filter-btn.is-active {
+            color: var(--text-charcoal);
+            font-weight: 500;
+        }
+
+        .filter-btn.is-active::after {
+            width: 100%;
+        }
+
+        /* Asymmetric Editorial Grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: clamp(2.5rem, 5vw, 4.5rem) clamp(1.5rem, 3vw, 3rem);
+        }
+
+        @media (min-width: 640px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(12, 1fr);
+            }
+            .project-card:nth-child(1) { grid-column: span 7; }
+            .project-card:nth-child(2) { grid-column: span 5; margin-top: 4rem; }
+            .project-card:nth-child(3) { grid-column: span 5; }
+            .project-card:nth-child(4) { grid-column: span 7; margin-top: -2rem; }
+            .project-card:nth-child(5) { grid-column: span 6; }
+            .project-card:nth-child(6) { grid-column: span 6; margin-top: 3rem; }
+        }
+
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            group: true;
+            opacity: 1;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .project-card.is-hidden {
+            display: none;
+        }
+
+        .project-media {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            background-color: var(--border-soft);
+            margin-bottom: 1.25rem;
+        }
+
+        .project-media-portrait { aspect-ratio: 3/4; }
+        .project-media-landscape { aspect-ratio: 4/3; }
+        .project-media-square { aspect-ratio: 1/1; }
+
+        .project-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .project-card:hover .project-media img {
+            transform: scale(1.03);
+        }
+
+        .project-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 1rem;
+        }
+
+        .project-title {
+            font-size: clamp(1.25rem, 1.8vw, 1.65rem);
+            font-weight: 300;
+            color: var(--text-charcoal);
+        }
+
+        .project-category {
+            font-size: 0.6875rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--text-taupe);
+            white-space: nowrap;
+        }
+
+        /* ==========================================================================
+           5. PHILOSOPHY SECTION
+           ========================================================================== */
+        .philosophy-section {
+            padding-top: clamp(4rem, 8vw, 8rem);
+            padding-bottom: clamp(4rem, 8vw, 8rem);
+            background-color: var(--bg-paper);
+            border-top: 1px solid var(--border-soft);
+            border-bottom: 1px solid var(--border-soft);
+        }
+
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: clamp(2.5rem, 5vw, 5rem);
+            align-items: center;
+        }
+
+        @media (min-width: 868px) {
+            .philosophy-grid {
+                grid-template-columns: 5fr 6fr;
+            }
+        }
+
+        .philosophy-media {
+            position: relative;
+        }
+
+        .philosophy-image-wrapper {
+            aspect-ratio: 4/5;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .philosophy-content {
+            padding-right: clamp(0rem, 3vw, 2rem);
+        }
+
+        .quote-text {
+            font-family: var(--font-serif);
+            font-size: clamp(1.75rem, 3.2vw, 2.75rem);
+            line-height: 1.25;
+            font-weight: 300;
+            color: var(--text-charcoal);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        /* ==========================================================================
+           6. ABOUT SECTION
+           ========================================================================== */
+        .about-section {
+            padding-top: clamp(4rem, 8vw, 8rem);
+            padding-bottom: clamp(4rem, 8vw, 8rem);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: clamp(2.5rem, 6vw, 6rem);
+            align-items: center;
+        }
+
+        @media (min-width: 868px) {
+            .about-grid {
+                grid-template-columns: 5fr 7fr;
+            }
+        }
+
+        .about-portrait {
+            aspect-ratio: 3/4;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 2px;
+        }
+
+        .about-bio-title {
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            margin-bottom: 1.5rem;
+            color: var(--text-charcoal);
+        }
+
+        .about-text {
+            font-size: clamp(0.95rem, 1.1vw, 1.1rem);
+            line-height: 1.75;
+            color: var(--text-taupe);
+            margin-bottom: 2.5rem;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-soft);
+            margin-bottom: 2.5rem;
+        }
+
+        .value-item h4 {
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            font-weight: 500;
+            color: var(--text-charcoal);
+            margin-bottom: 0.5rem;
+        }
+
+        .value-item p {
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        /* ==========================================================================
+           7. SERVICES SECTION
+           ========================================================================== */
+        .services-section {
+            padding-top: clamp(4rem, 8vw, 8rem);
+            padding-bottom: clamp(4rem, 8vw, 8rem);
+            background-color: var(--bg-paper);
+            border-top: 1px solid var(--border-soft);
+            border-bottom: 1px solid var(--border-soft);
+        }
+
+        .services-list {
+            margin-top: clamp(2.5rem, 4vw, 4rem);
+            border-top: 1px solid var(--border-soft);
+        }
+
+        .service-row {
+            padding: clamp(1.75rem, 3vw, 3rem) 0;
+            border-bottom: 1px solid var(--border-soft);
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            transition: var(--transition-fast);
+        }
+
+        @media (min-width: 768px) {
+            .service-row {
+                grid-template-columns: 3fr 5fr 3fr;
+                align-items: baseline;
+            }
+        }
+
+        .service-name {
+            font-size: clamp(1.5rem, 2.2vw, 2rem);
+            font-weight: 300;
+            color: var(--text-charcoal);
+        }
+
+        .service-desc {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-taupe);
+        }
+
+        .service-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .service-meta {
+                align-items: flex-end;
+                text-align: right;
+            }
+        }
+
+        .service-price {
+            font-size: 0.8125rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-charcoal);
+            font-weight: 500;
+        }
+
+        .price-note {
+            font-size: 0.6875rem;
+            color: var(--accent-accent);
+            text-transform: none;
+            letter-spacing: normal;
+        }
+
+        /* ==========================================================================
+           8. VISUAL INTERLUDE
+           ========================================================================== */
+        .interlude-section {
+            position: relative;
+            padding: clamp(6rem, 14vh, 12rem) 0;
+            background-color: var(--text-charcoal);
+            color: var(--bg-paper);
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .interlude-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.35;
+            filter: grayscale(20%);
+        }
+
+        .interlude-content {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .interlude-quote {
+            font-family: var(--font-serif);
+            font-size: clamp(2rem, 4.5vw, 3.75rem);
+            font-weight: 300;
+            line-height: 1.2;
+            color: var(--bg-paper);
+            margin-bottom: 1.5rem;
+        }
+
+        /* ==========================================================================
+           9. CONTACT & ENQUIRY FORM
+           ========================================================================== */
+        .contact-section {
+            padding-top: clamp(4rem, 8vw, 8rem);
+            padding-bottom: clamp(4rem, 8vw, 8rem);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: clamp(3rem, 6vw, 6rem);
+        }
+
+        @media (min-width: 868px) {
+            .contact-grid {
+                grid-template-columns: 5fr 7fr;
+            }
+        }
+
+        .contact-info-title {
+            font-size: clamp(2.25rem, 4vw, 3.5rem);
+            margin-bottom: 1.5rem;
+            color: var(--text-charcoal);
+        }
+
+        .contact-details-list {
+            margin-top: 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-detail-item {
+            font-size: 0.8125rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .contact-detail-label {
+            color: var(--accent-accent);
+            margin-bottom: 0.25rem;
+            display: block;
+        }
+
+        .contact-detail-value {
+            color: var(--text-charcoal);
+            font-size: 1rem;
+            text-transform: none;
+            letter-spacing: normal;
+        }
+
+        /* Editorial Form Fields */
+        .form-group {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.6875rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-charcoal);
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--border-soft);
+            padding: 0.85rem 0;
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            color: var(--text-charcoal);
+            border-radius: 0;
+            transition: var(--transition-fast);
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--text-charcoal);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 110px;
+        }
+
+        .form-select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml;utf8,<svg fill='%2322211F' height='12' viewBox='0 0 24 24' width='12' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 0 center;
+        }
+
+        .form-privacy-note {
+            font-size: 0.75rem;
+            color: var(--text-taupe);
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        /* Form Modal / Enquiry Summary Output */
+        .enquiry-modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(34, 33, 31, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition-fast);
+        }
+
+        .enquiry-modal-backdrop.is-active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .enquiry-modal {
+            background-color: var(--bg-paper);
+            padding: clamp(2rem, 4vw, 3.5rem);
+            max-width: 620px;
+            width: 100%;
+            border: 1px solid var(--border-soft);
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: translateY(20px);
+            transition: var(--transition-smooth);
+        }
+
+        .enquiry-modal-backdrop.is-active .enquiry-modal {
+            transform: translateY(0);
+        }
+
+        .modal-title {
+            font-size: clamp(1.75rem, 3vw, 2.25rem);
+            margin-bottom: 1rem;
+            color: var(--text-charcoal);
+        }
+
+        .summary-box {
+            background-color: var(--bg-ivory);
+            border: 1px solid var(--border-soft);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            font-size: 0.875rem;
+            line-height: 1.7;
+            white-space: pre-wrap;
+            font-family: monospace;
+            color: var(--text-charcoal);
+            max-height: 220px;
+            overflow-y: auto;
+        }
+
+        .modal-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        /* ==========================================================================
+           10. LIGHTBOX VIEWER
+           ========================================================================== */
+        .lightbox-backdrop {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(17, 16, 15, 0.95);
+            z-index: 200;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease;
+            padding: 1.5rem;
+        }
+
+        .lightbox-backdrop.is-open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .lightbox-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--bg-paper);
+            z-index: 10;
+        }
+
+        .lightbox-meta {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .lightbox-title {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 300;
+        }
+
+        .lightbox-category {
+            font-size: 0.6875rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent-accent);
+        }
+
+        .lightbox-close-btn {
+            color: var(--bg-paper);
+            font-size: 1.75rem;
+            line-height: 1;
+            padding: 0.5rem;
+            transition: var(--transition-fast);
+        }
+
+        .lightbox-close-btn:hover { opacity: 0.7; }
+
+        .lightbox-stage {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 78vh;
+            object-fit: contain;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--bg-paper);
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: var(--transition-fast);
+            z-index: 10;
+        }
+
+        .lightbox-nav-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .lightbox-prev { left: 1rem; }
+        .lightbox-next { right: 1rem; }
+
+        /* ==========================================================================
+           11. FOOTER
+           ========================================================================== */
+        .site-footer {
+            background-color: var(--text-charcoal);
+            color: var(--bg-ivory);
+            padding-top: clamp(4rem, 8vw, 7rem);
+            padding-bottom: 3rem;
+            border-top: 1px solid var(--border-soft);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        @media (min-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 5fr 4fr 3fr;
+            }
+        }
+
+        .footer-brand {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .footer-desc {
+            color: var(--accent-accent);
+            font-size: 0.9rem;
+            max-width: 320px;
+            line-height: 1.6;
+        }
+
+        .footer-nav-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+
+        .footer-nav-link {
+            font-size: 0.75rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--bg-ivory);
+            transition: var(--transition-fast);
+        }
+
+        .footer-nav-link:hover { color: var(--accent-accent); }
+
+        .footer-bottom {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(222, 218, 210, 0.15);
+            font-size: 0.75rem;
+            color: var(--accent-accent);
+        }
+
+        @media (min-width: 640px) {
+            .footer-bottom {
+                flex-direction: row;
+            }
+        }
+
+        .back-to-top {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--bg-ivory);
+            font-size: 0.6875rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        .back-to-top:hover { opacity: 0.7; }
+
+        /* Animation utilities */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-on-scroll.is-revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Motion preference support */
+        @media (prefers-reduced-motion: reduce) {
+            .reveal-on-scroll {
+                transition: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+            .hero-image-wrapper img, .project-media img {
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. ANNOUNCEMENT BAR -->
+    <aside class="announcement-bar" id="announcementBar">
+        NOW BOOKING SELECT PROJECTS WORLDWIDE FOR 2027
+    </aside>
+
+    <!-- 2. HEADER -->
+    <header class="site-header" id="siteHeader">
+        <div class="container nav-wrapper">
+            <a href="#" class="brand-logo" aria-label="LUMIÈRE Home">LUMIÈRE</a>
+            
+            <nav class="desktop-nav" aria-label="Main Navigation">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#portfolio" class="nav-link">Portfolio</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#contact" class="btn-editorial-sm">Let's Talk</a>
+            </nav>
+
+            <button class="mobile-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- MOBILE DRAWER MENU -->
+    <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+        <nav class="mobile-nav-links">
+            <a href="#home" class="mobile-nav-item">Home</a>
+            <a href="#portfolio" class="mobile-nav-item">Portfolio</a>
+            <a href="#about" class="mobile-nav-item">About</a>
+            <a href="#services" class="mobile-nav-item">Services</a>
+            <a href="#contact" class="mobile-nav-item">Contact</a>
+        </nav>
+        <a href="#contact" class="btn-editorial-primary mobile-nav-item">Inquire Studio</a>
+    </div>
+
+    <main id="home">
+        <!-- 3. HERO SECTION -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-header reveal-on-scroll">
+                    <span class="eyebrow">PHOTOGRAPHY · STORIES · PEOPLE</span>
+                    <h1 class="hero-title">For the moments that become everything.</h1>
+                    <p class="hero-description">
+                        We document love, art, and human connection with an editorial eye and an enduring, honest perspective.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#portfolio" class="btn-editorial-primary">EXPLORE THE WORK</a>
+                        <a href="#about" class="link-subtle">GET TO KNOW US</a>
+                    </div>
+                </div>
+
+                <div class="hero-media-container reveal-on-scroll">
+                    <div class="hero-image-wrapper">
+                        <!-- High Quality Unsplash Public Image (Editorial Portrait/Couple) -->
+                        <img id="heroImage" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1800&q=85" alt="Cinematic editorial portrait by Lumière" width="1800" height="1200" loading="eager">
+                    </div>
+                    <div class="hero-meta">
+                        <span>BASED IN PARIS / AVAILABLE WORLDWIDE</span>
+                        <span>FINE ART EDITORIAL</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. SELECTED WORK / PORTFOLIO -->
+        <section class="portfolio-section" id="portfolio">
+            <div class="container">
+                <div class="section-header-flex reveal-on-scroll">
+                    <div>
+                        <span class="eyebrow">SELECTED PORTFOLIO</span>
+                        <h2 class="section-title">Visual Narratives</h2>
+                    </div>
+                    
+                    <!-- Filters -->
+                    <div class="filter-nav" role="tablist" aria-label="Portfolio Category Filters">
+                        <button class="filter-btn is-active" data-filter="all" role="tab" aria-selected="true">All</button>
+                        <button class="filter-btn" data-filter="weddings" role="tab" aria-selected="false">Weddings</button>
+                        <button class="filter-btn" data-filter="portraits" role="tab" aria-selected="false">Portraits</button>
+                        <button class="filter-btn" data-filter="editorial" role="tab" aria-selected="false">Editorial</button>
+                    </div>
+                </div>
+
+                <!-- Portfolio Grid -->
+                <div class="portfolio-grid" id="portfolioGrid">
+                    <!-- Project 1 -->
+                    <article class="project-card reveal-on-scroll" data-category="weddings" data-index="0">
+                        <div class="project-media project-media-portrait">
+                            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=85" alt="The Quiet Promise Wedding" loading="lazy" width="1200" height="1600">
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">The Quiet Promise</h3>
+                            <span class="project-category">Wedding · Amalfi Coast</span>
+                        </div>
+                    </article>
+
+                    <!-- Project 2 -->
+                    <article class="project-card reveal-on-scroll" data-category="portraits" data-index="1">
+                        <div class="project-media project-media-landscape">
+                            <img src="https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&w=1200&q=85" alt="In Her Element Portrait" loading="lazy" width="1200" height="900">
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">In Her Element</h3>
+                            <span class="project-category">Portrait · Paris</span>
+                        </div>
+                    </article>
+
+                    <!-- Project 3 -->
+                    <article class="project-card reveal-on-scroll" data-category="editorial" data-index="2">
+                        <div class="project-media project-media-square">
+                            <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=1200&q=85" alt="Golden Hour Always" loading="lazy" width="1200" height="1200">
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">Golden Hour, Always</h3>
+                            <span class="project-category">Editorial · Provence</span>
+                        </div>
+                    </article>
+
+                    <!-- Project 4 -->
+                    <article class="project-card reveal-on-scroll" data-category="weddings" data-index="3">
+                        <div class="project-media project-media-landscape">
+                            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1200&q=85" alt="A Day in Bloom Wedding" loading="lazy" width="1200" height="900">
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">A Day in Bloom</h3>
+                            <span class="project-category">Wedding · Cotswolds</span>
+                        </div>
+                    </article>
+
+                    <!-- Project 5 -->
+                    <article class="project-card reveal-on-scroll" data-category="portraits" data-index="4">
+                        <div class="project-media project-media-portrait">
+                            <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=1200&q=85" alt="Softly, Wildly Portrait" loading="lazy" width="1200" height="1600">
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">Softly, Wildly</h3>
+                            <span class="project-category">Portrait · Kyoto</span>
+                        </div>
+                    </article>
+
+                    <!-- Project 6 -->
+                    <article class="project-card reveal-on-scroll" data-category="editorial" data-index="5">
+                        <div class="project-media project-media-square">
+                            <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1200&q=85" alt="Somewhere Between Editorial" loading="lazy" width="1200" height="1200">
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">Somewhere Between</h3>
+                            <span class="project-category">Editorial · Venice</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. PHILOSOPHY SECTION -->
+        <section class="philosophy-section">
+            <div class="container">
+                <div class="philosophy-grid">
+                    <div class="philosophy-media reveal-on-scroll">
+                        <div class="philosophy-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&q=85" alt="Lumiere Photography Philosophy Details" loading="lazy" width="1200" height="1500">
+                        </div>
+                    </div>
+                    <div class="philosophy-content reveal-on-scroll">
+                        <span class="eyebrow">OUR PHILOSOPHY</span>
+                        <blockquote class="quote-text">
+                            “Not everything meaningful asks for attention. Sometimes it is a glance across a crowded room. A hand finding yours. We photograph the things you might not notice until you miss them.”
+                        </blockquote>
+                        <a href="#about" class="btn-editorial-sm">READ OUR STORY</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. ABOUT THE PHOTOGRAPHER -->
+        <section class="about-section" id="about">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-portrait reveal-on-scroll">
+                        <img id="artistPortrait" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1000&q=85" alt="Studio Director Portrait" loading="lazy" width="1000" height="1333">
+                    </div>
+                    <div class="about-bio reveal-on-scroll">
+                        <span class="eyebrow">MEET THE ARTIST</span>
+                        <h2 class="about-bio-title" id="artistNameDisplay">Elena Vance</h2>
+                        <p class="about-text" id="artistBioDisplay">
+                            With over a decade spent capturing quiet moments and dramatic editorial landscapes, I treat every project as an artistic legacy. My background in art history informs a timeless, composition-driven approach where light and genuine human sentiment govern every frame.
+                        </p>
+                        
+                        <div class="values-grid">
+                            <div class="value-item">
+                                <h4>Presence</h4>
+                                <p>Observing without interrupting the natural flow.</p>
+                            </div>
+                            <div class="value-item">
+                                <h4>Intention</h4>
+                                <p>Crafting frames with purpose and editorial clarity.</p>
+                            </div>
+                            <div class="value-item">
+                                <h4>Honesty</h4>
+                                <p>Preserving truth over forced poses.</p>
+                            </div>
+                        </div>
+
+                        <a href="#contact" class="btn-editorial-primary">START A CONVERSATION</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. SERVICES -->
+        <section class="services-section" id="services">
+            <div class="container">
+                <div class="reveal-on-scroll">
+                    <span class="eyebrow">OFFERINGS & INVESTMENT</span>
+                    <h2 class="section-title">Curated Offerings</h2>
+                </div>
+
+                <div class="services-list" id="servicesList">
+                    <!-- Dynamic rendering or structured HTML -->
+                    <div class="service-row reveal-on-scroll">
+                        <h3 class="service-name">Weddings & Elopements</h3>
+                        <p class="service-desc">Full day documentarian and fine art coverage, tailored timeline planning, and high-resolution hand-edited digital collections.</p>
+                        <div class="service-meta">
+                            <span class="service-price">FROM €4,800</span>
+                            <span class="price-note">*Illustrative starting rate</span>
+                        </div>
+                    </div>
+
+                    <div class="service-row reveal-on-scroll">
+                        <h3 class="service-name">Editorial Portraits</h3>
+                        <p class="service-desc">Intimate studio or location portraiture designed for artists, couples, and creative individuals seeking timeless portraiture.</p>
+                        <div class="service-meta">
+                            <span class="service-price">FROM €1,200</span>
+                            <span class="price-note">*Illustrative starting rate</span>
+                        </div>
+                    </div>
+
+                    <div class="service-row reveal-on-scroll">
+                        <h3 class="service-name">Fashion & Lifestyle</h3>
+                        <p class="service-desc">Creative direction and photographic campaign work for luxury brands, publications, and independent designers worldwide.</p>
+                        <div class="service-meta">
+                            <span class="service-price">FROM €2,500</span>
+                            <span class="price-note">*Illustrative starting rate</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. VISUAL INTERLUDE -->
+        <section class="interlude-section">
+            <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1800&q=85" alt="Lumiere Ambient Photography Background" class="interlude-bg" loading="lazy" width="1800" height="900">
+            <div class="container interlude-content reveal-on-scroll">
+                <p class="interlude-quote">“Some things are too meaningful to leave only to memory.”</p>
+                <span class="eyebrow" style="color: var(--border-soft);">LUMIÈRE STUDIO</span>
+            </div>
+        </section>
+
+        <!-- 9. CONTACT & ENQUIRY FORM -->
+        <section class="contact-section" id="contact">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-info reveal-on-scroll">
+                        <span class="eyebrow">RESERVATIONS & ENQUIRIES</span>
+                        <h2 class="contact-info-title">Let’s craft something beautiful together.</h2>
+                        <p style="color: var(--text-taupe); font-size: 1rem;">
+                            Currently accepting select commissions worldwide for 2027. Please fill out the enquiry form with your vision and timeline details.
+                        </p>
+
+                        <div class="contact-details-list">
+                            <div class="contact-detail-item">
+                                <span class="contact-detail-label">STUDIO DIRECT</span>
+                                <span class="contact-detail-value" id="contactEmailDisplay">hello@lumiere-studio.com</span>
+                            </div>
+                            <div class="contact-detail-item">
+                                <span class="contact-detail-label">LOCATION</span>
+                                <span class="contact-detail-value" id="contactLocationDisplay">Paris · Florence · Available Worldwide</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-wrapper reveal-on-scroll">
+                        <form id="enquiryForm" novalidate>
+                            <div class="form-group">
+                                <label for="formName" class="form-label">YOUR FULL NAME *</label>
+                                <input type="text" id="formName" name="name" class="form-input" required placeholder="e.g. Julianne Vance">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="formEmail" class="form-label">EMAIL ADDRESS *</label>
+                                <input type="email" id="formEmail" name="email" class="form-input" required placeholder="e.g. julianne@example.com">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="formService" class="form-label">COLLECTION INTEREST *</label>
+                                <select id="formService" name="service" class="form-select" required>
+                                    <option value="" disabled selected>Select a collection</option>
+                                    <option value="Weddings">Wedding & Elopement Commission</option>
+                                    <option value="Portraits">Editorial Portrait Session</option>
+                                    <option value="Lifestyle">Fashion & Lifestyle Campaign</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="formDate" class="form-label">PREFERRED DATE OR TIMEFRAME</label>
+                                <input type="text" id="formDate" name="date" class="form-input" placeholder="e.g. October 2027 / Spring 2027">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="formMessage" class="form-label">THE VISION & DETAILS *</label>
+                                <textarea id="formMessage" name="message" class="form-textarea" required placeholder="Tell us about your event, location, aesthetic, or special notes..."></textarea>
+                            </div>
+
+                            <p class="form-privacy-note">
+                                Respecting your privacy is essential to us. Your contact details are strictly used to respond to your booking enquiry.
+                            </p>
+
+                            <button type="submit" class="btn-editorial-primary" style="width: 100%;">PREVIEW & SUBMIT ENQUIRY</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 10. LIGHTBOX CONTAINER -->
+    <div class="lightbox-backdrop" id="lightboxModal" role="dialog" aria-modal="true" aria-label="Project detail view">
+        <div class="lightbox-header">
+            <div class="lightbox-meta">
+                <span class="lightbox-title" id="lightboxTitle">Project Title</span>
+                <span class="lightbox-category" id="lightboxCategory">Category</span>
+            </div>
+            <button class="lightbox-close-btn" id="lightboxClose" aria-label="Close image viewer">&times;</button>
+        </div>
+
+        <div class="lightbox-stage">
+            <button class="lightbox-nav-btn lightbox-prev" id="lightboxPrev" aria-label="Previous image">&larr;</button>
+            <img src="" alt="" class="lightbox-image" id="lightboxImg">
+            <button class="lightbox-nav-btn lightbox-next" id="lightboxNext" aria-label="Next image">&rarr;</button>
+        </div>
+
+        <div style="text-align: center; font-size: 0.75rem; color: var(--border-soft);" id="lightboxCounter">
+            1 / 6
+        </div>
+    </div>
+
+    <!-- 11. ENQUIRY SUMMARY MODAL -->
+    <div class="enquiry-modal-backdrop" id="enquiryModalBackdrop">
+        <div class="enquiry-modal">
+            <h3 class="modal-title">Your Enquiry Draft</h3>
+            <p style="font-size: 0.9rem; color: var(--text-taupe);">
+                Review your message below. You can copy this summary to your clipboard or launch your email application directly to complete sending to <strong id="modalTargetEmail">hello@lumiere-studio.com</strong>.
+            </p>
+            
+            <div class="summary-box" id="enquirySummaryText"></div>
+
+            <div class="modal-actions">
+                <button class="btn-editorial-primary" id="copyEnquiryBtn">COPY ENQUIRY TEXT</button>
+                <a href="#" class="btn-editorial-sm" id="mailtoDraftLink" target="_blank" rel="noopener">OPEN EMAIL APP</a>
+                <button class="btn-editorial-sm" id="closeModalBtn" style="border-color: transparent;">EDIT FORM</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 12. FOOTER -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <span class="footer-brand">LUMIÈRE</span>
+                    <p class="footer-desc">
+                        A fine art photography studio capturing quiet romance and editorial storytelling worldwide.
+                    </p>
+                </div>
+
+                <div>
+                    <ul class="footer-nav-list">
+                        <li><a href="#home" class="footer-nav-link">Home</a></li>
+                        <li><a href="#portfolio" class="footer-nav-link">Portfolio Collections</a></li>
+                        <li><a href="#about" class="footer-nav-link">About Studio</a></li>
+                        <li><a href="#services" class="footer-nav-link">Offerings & Investment</a></li>
+                        <li><a href="#contact" class="footer-nav-link">Inquire</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <span class="contact-detail-label" style="color: var(--border-soft); margin-bottom: 0.75rem; display: block;">CONNECT</span>
+                    <a href="https://instagram.com" target="_blank" rel="noopener" class="footer-nav-link" id="instagramLinkDisplay" style="display: block; margin-bottom: 1rem;">Instagram &rarr;</a>
+                    <span style="font-size: 0.75rem; color: var(--accent-accent);">Studio Hours: Mon — Fri by Appointment</span>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> LUMIÈRE STUDIO. ALL RIGHTS RESERVED.</p>
+                <a href="#home" class="back-to-top">BACK TO TOP &uarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================================================
+       13. EMBEDDED JAVASCRIPT & CONFIGURATION
+       ========================================================================== -->
+    <script>
+        /**
+         * ==========================================================================
+         * LUMIÈRE - EDITABLE CONFIGURATION OBJECT
+         * Customize all website copy, images, and contact information here.
+         * ==========================================================================
+         */
+        const LUMIERE_CONFIG = {
+            photographerName: "Elena Vance",
+            studioLocation: "Paris · Florence · Available Worldwide",
+            contactEmail: "hello@lumiere-studio.com",
+            instagramUrl: "https://instagram.com/lumiere_editorial",
+            
+            // Portfolio Items Data
+            projects: [
+                {
+                    title: "The Quiet Promise",
+                    category: "weddings",
+                    categoryLabel: "Wedding · Amalfi Coast",
+                    image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=85"
+                },
+                {
+                    title: "In Her Element",
+                    category: "portraits",
+                    categoryLabel: "Portrait · Paris",
+                    image: "https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&w=1600&q=85"
+                },
+                {
+                    title: "Golden Hour, Always",
+                    category: "editorial",
+                    categoryLabel: "Editorial · Provence",
+                    image: "https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=1600&q=85"
+                },
+                {
+                    title: "A Day in Bloom",
+                    category: "weddings",
+                    categoryLabel: "Wedding · Cotswolds",
+                    image: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1600&q=85"
+                },
+                {
+                    title: "Softly, Wildly",
+                    category: "portraits",
+                    categoryLabel: "Portrait · Kyoto",
+                    image: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=1600&q=85"
+                },
+                {
+                    title: "Somewhere Between",
+                    category: "editorial",
+                    categoryLabel: "Editorial · Venice",
+                    image: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1600&q=85"
+                }
+            ]
+        };
+
+        /* ==========================================================================
+           DOM INITIALIZATION & APPLICATION CONTROLLER
+           ========================================================================== */
+        document.addEventListener('DOMContentLoaded', () => {
+            initDynamicConfig();
+            initMobileNavigation();
+            initScrollObserver();
+            initPortfolioFilter();
+            initLightbox();
+            initContactForm();
+        });
+
+        /* Hydrate text/URLs from the configuration object */
+        function initDynamicConfig() {
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            document.getElementById('artistNameDisplay').textContent = LUMIERE_CONFIG.photographerName;
+            document.getElementById('contactEmailDisplay').textContent = LUMIERE_CONFIG.contactEmail;
+            document.getElementById('contactLocationDisplay').textContent = LUMIERE_CONFIG.studioLocation;
+            document.getElementById('modalTargetEmail').textContent = LUMIERE_CONFIG.contactEmail;
+            
+            const instaLink = document.getElementById('instagramLinkDisplay');
+            if (instaLink) instaLink.href = LUMIERE_CONFIG.instagramUrl;
+        }
+
+        /* Mobile Drawer Toggle Logic */
+        function initMobileNavigation() {
+            const toggleBtn = document.getElementById('mobileMenuToggle');
+            const drawer = document.getElementById('mobileDrawer');
+            const mobileLinks = document.querySelectorAll('.mobile-nav-item');
+
+            function toggleMenu(open) {
+                const isOpen = open !== undefined ? open : !drawer.classList.contains('is-open');
+                drawer.classList.toggle('is-open', isOpen);
+                toggleBtn.classList.toggle('is-active', isOpen);
+                toggleBtn.setAttribute('aria-expanded', isOpen);
+                drawer.setAttribute('aria-hidden', !isOpen);
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            }
+
+            toggleBtn.addEventListener('click', () => toggleMenu());
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => toggleMenu(false));
+            });
+        }
+
+        /* Scroll Reveal Animation Observer */
+        function initScrollObserver() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px 0px -50px 0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-revealed');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+        }
+
+        /* Portfolio Category Filtering Logic */
+        function initPortfolioFilter() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Active state
+                    filterBtns.forEach(b => {
+                        b.classList.remove('is-active');
+                        b.setAttribute('aria-selected', 'false');
+                    });
+                    btn.classList.add('is-active');
+                    btn.setAttribute('aria-selected', 'true');
+
+                    const filterValue = btn.getAttribute('data-filter');
+
+                    projectCards.forEach(card => {
+                        const cardCategory = card.getAttribute('data-category');
+                        if (filterValue === 'all' || cardCategory === filterValue) {
+                            card.classList.remove('is-hidden');
+                        } else {
+                            card.classList.add('is-hidden');
+                        }
+                    });
+                });
+            });
+        }
+
+        /* Lightbox Viewer Logic with Keyboard & Touch Support */
+        function initLightbox() {
+            const modal = document.getElementById('lightboxModal');
+            const imgEl = document.getElementById('lightboxImg');
+            const titleEl = document.getElementById('lightboxTitle');
+            const categoryEl = document.getElementById('lightboxCategory');
+            const counterEl = document.getElementById('lightboxCounter');
+            
+            const closeBtn = document.getElementById('lightboxClose');
+            const prevBtn = document.getElementById('lightboxPrev');
+            const nextBtn = document.getElementById('lightboxNext');
+
+            let currentIndex = 0;
+            const projectCards = Array.from(document.querySelectorAll('.project-card'));
+
+            function openLightbox(index) {
+                currentIndex = index;
+                updateLightboxContent();
+                modal.classList.add('is-open');
+                document.body.style.overflow = 'hidden';
+                document.addEventListener('keydown', handleKeyPress);
+            }
+
+            function closeLightbox() {
+                modal.classList.remove('is-open');
+                document.body.style.overflow = '';
+                document.removeEventListener('keydown', handleKeyPress);
+            }
+
+            function updateLightboxContent() {
+                const project = LUMIERE_CONFIG.projects[currentIndex];
+                if (!project) return;
+
+                imgEl.src = project.image;
+                imgEl.alt = project.title;
+                titleEl.textContent = project.title;
+                categoryEl.textContent = project.categoryLabel;
+                counterEl.textContent = `${currentIndex + 1} / ${LUMIERE_CONFIG.projects.length}`;
+            }
+
+            function nextImage() {
+                currentIndex = (currentIndex + 1) % LUMIERE_CONFIG.projects.length;
+                updateLightboxContent();
+            }
+
+            function prevImage() {
+                currentIndex = (currentIndex - 1 + LUMIERE_CONFIG.projects.length) % LUMIERE_CONFIG.projects.length;
+                updateLightboxContent();
+            }
+
+            function handleKeyPress(e) {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowRight') nextImage();
+                if (e.key === 'ArrowLeft') prevImage();
+            }
+
+            // Click Handlers
+            projectCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const idx = parseInt(card.getAttribute('data-index'), 10);
+                    openLightbox(idx);
+                });
+            });
+
+            closeBtn.addEventListener('click', closeLightbox);
+            nextBtn.addEventListener('click', (e) => { e.stopPropagation(); nextImage(); });
+            prevBtn.addEventListener('click', (e) => { e.stopPropagation(); prevImage(); });
+
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal || e.target.classList.contains('lightbox-stage')) {
+                    closeLightbox();
+                }
+            });
+
+            // Touch Swipe Handling for Mobile
+            let touchStartX = 0;
+            modal.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            modal.addEventListener('touchend', (e) => {
+                const touchEndX = e.changedTouches[0].screenX;
+                if (touchStartX - touchEndX > 50) nextImage(); // Swipe left
+                if (touchEndX - touchStartX > 50) prevImage(); // Swipe right
+            }, { passive: true });
+        }
+
+        /* Transparent Contact Form & Email Draft Workflow */
+        function initContactForm() {
+            const form = document.getElementById('enquiryForm');
+            const modalBackdrop = document.getElementById('enquiryModalBackdrop');
+            const summaryBox = document.getElementById('enquirySummaryText');
+            const copyBtn = document.getElementById('copyEnquiryBtn');
+            const mailtoLink = document.getElementById('mailtoDraftLink');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+
+            let compiledSummary = "";
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                if (!form.checkValidity()) {
+                    form.reportValidity();
+                    return;
+                }
+
+                const name = document.getElementById('formName').value.trim();
+                const email = document.getElementById('formEmail').value.trim();
+                const service = document.getElementById('formService').value;
+                const date = document.getElementById('formDate').value.trim() || 'Flexible / To be decided';
+                const message = document.getElementById('formMessage').value.trim();
+
+                // Format summary plain-text
+                compiledSummary = 
+`NEW ENQUIRY FOR LUMIÈRE STUDIO
+---------------------------------
+NAME: ${name}
+EMAIL: ${email}
+COLLECTION: ${service}
+DATE/TIMEFRAME: ${date}
+
+VISION & DETAILS:
+${message}
+---------------------------------
+Sent via Lumière Portfolio Web Portal`;
+
+                summaryBox.textContent = compiledSummary;
+
+                // Construct encoded mailto string
+                const subject = encodeURIComponent(`Studio Enquiry - ${name} (${service})`);
+                const body = encodeURIComponent(compiledSummary);
+                mailtoLink.href = `mailto:${LUMIERE_CONFIG.contactEmail}?subject=${subject}&body=${body}`;
+
+                // Show Modal
+                modalBackdrop.classList.add('is-active');
+            });
+
+            closeModalBtn.addEventListener('click', () => {
+                modalBackdrop.classList.remove('is-active');
+            });
+
+            // Clipboard Copy API with ExecCommand Fallback
+            copyBtn.addEventListener('click', () => {
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(compiledSummary).then(() => {
+                        showCopyFeedback();
+                    }).catch(() => fallbackCopy());
+                } else {
+                    fallbackCopy();
+                }
+            });
+
+            function fallbackCopy() {
+                const textArea = document.createElement('textarea');
+                textArea.value = compiledSummary;
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    showCopyFeedback();
+                } catch (err) {
+                    alert('Copy failed. Please manually select and copy the text inside the box.');
+                }
+                document.body.removeChild(textArea);
+            }
+
+            function showCopyFeedback() {
+                const originalText = copyBtn.textContent;
+                copyBtn.textContent = 'COPIED TO CLIPBOARD ✓';
+                copyBtn.style.backgroundColor = 'var(--text-taupe)';
+                setTimeout(() => {
+                    copyBtn.textContent = originalText;
+                    copyBtn.style.backgroundColor = 'var(--text-charcoal)';
+                }, 2500);
+            }
+        }
+    </script>
+</body>
+</html>
